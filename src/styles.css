@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr';
+
+
+
+form {
+    border: 1px solid gray;
+    margin: 10%;
+    padding: 5% 5%;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
