@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  loginPath: string = environment.apiUrl + "login"
+  loginPath: string = environment.apiUrl + "identity/login"
   constructor(private http: HttpClient) { }
 
   login(payload): Observable<any> {
@@ -16,5 +16,9 @@ export class LoginService {
 
   setTToken(token) {
     localStorage.setItem('token', token);
+  }
+
+  setId(dealerId) {
+    localStorage.setItem('dealerId', dealerId);
   }
 }

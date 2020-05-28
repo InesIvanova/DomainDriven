@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxStronglyTypedFormsModule } from 'ngx-strongly-typed-forms';
 import { ModalModule } from 'angular-custom-modal';
 import { PopUpComponent } from './pop-up/pop-up.component';
@@ -10,14 +10,16 @@ import { InterceptorService } from './interceptor.service';
 import { RouterExtService } from './rouer-ext.service';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptorService } from './error-interceptor.service';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
-  declarations: [PopUpComponent],
+  declarations: [PopUpComponent, NavbarComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     NgxStronglyTypedFormsModule,
     ModalModule,
@@ -36,6 +38,7 @@ import { ErrorInterceptorService } from './error-interceptor.service';
     },
     RouterExtService,
   ],
-  exports: [ReactiveFormsModule, ModalModule, PopUpComponent]
+  exports: [ReactiveFormsModule,    FormsModule,
+    ModalModule, PopUpComponent, NavbarComponent]
 })
 export class SharedModule { }

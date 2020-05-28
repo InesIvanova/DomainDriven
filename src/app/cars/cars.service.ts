@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
 import { Car } from './cars.model';
+import { Category } from './category.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarsService {
-  carsPath: string = environment.apiUrl + 'users/';
+  carsPath: string = environment.apiUrl + 'carads/';
   constructor(private http: HttpClient) { }
 
   getCars(): Observable<Array<Car>> {
@@ -31,4 +31,14 @@ export class CarsService {
   deleteCar(id: string) {
     return this.http.delete(this.carsPath + id);
   }
+
+  getCategories(): Observable<Array<Category>> {
+    return this.http.get<Array<Category>>(environment.apiUrl + 'categories')
+  }
+
+  search(queryString): Observable<Array<Car>> {
+    var path  = this.carsPath.slice(0, -1)
+    return this.http.get<Array<Car>>(this.carsPath + "?" + queryString)
+  }
+
 }

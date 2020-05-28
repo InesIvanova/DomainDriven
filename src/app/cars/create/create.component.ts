@@ -4,6 +4,7 @@ import { Car } from '../cars.model';
 import { Validators } from '@angular/forms';
 import { CarsService } from '../cars.service';
 import { ToastrService } from 'ngx-toastr';
+import { Category } from '../category.model';
 
 @Component({
   selector: 'app-create',
@@ -12,14 +13,26 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CreateComponent implements OnInit {
   carForm: FormGroup<Car>;
-  constructor(private fb: FormBuilder, private carsService: CarsService, public toastr: ToastrService) { }
+  categories: Array<Category>
+  constructor(private fb: FormBuilder, private carsService: CarsService, public toastr: ToastrService) {
+    this.carsService.getCategories().subscribe(res => {
+      this.categories = res;
+    })
+   }
 
   ngOnInit(): void {
     this.carForm = this.fb.group<Car>({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
+      manufacturer: ['', Validators.required],
+      model: ['', Validators.required],
+      category: [1, Validators.required],
+      imageUrl: ['', Validators.required],
+      pricePerDay: [0, Validators.required],
+      climateControl: [false, Validators.required],
+      numberOfSeats: [0, Validators.required],
+      transmissionType: [0, Validators.required],
     })
   }
+
 
   create() {
     this.carsService.createCar(this.carForm.value).subscribe(res => {

@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.removeItem('token');
     this.loginForm = this.fb.group<LoginFormModel>({
       email: ['', Validators.required],
       password: ['', Validators.required],
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.loginService.login(this.loginForm.value).subscribe(res => {
       this.loginService.setTToken(res['token']);
+      this.loginService.setId(res["dealerId"]);
       this.router.navigate(['cars']);
     })
   }

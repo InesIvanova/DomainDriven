@@ -20,7 +20,7 @@ export class ListComponent implements OnInit {
 
   fetchCars() {
     this.carsService.getCars().subscribe(cars => {
-      this.cars = cars['data'];
+      this.cars = cars['carAds'];
     })
   }
 
@@ -32,6 +32,10 @@ export class ListComponent implements OnInit {
   cancelModal() {
     this.popUpOpen = false;
     this.id = null;
+  }
+
+  assignCars(event) {
+    this.cars = event['carAds'];
   }
 
   deleteCar() {

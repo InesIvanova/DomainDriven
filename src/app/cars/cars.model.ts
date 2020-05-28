@@ -1,7 +1,11 @@
 export interface Car {
-    id?: string;
-    email?: string;
-    first_name: string;
-    last_name: string;
-    avatar?: string;
+    id?: number;
+    manufacturer: string;
+    model: string;
+    category: number;
+    imageUrl: string;
+    pricePerDay: number;
+    climateControl: boolean;
+    numberOfSeats: number;
+    transmissionType: number;
 }

@@ -1,11 +1,16 @@
 <div class="container">
-    <div class="row">
+  <div class="row">
+    <div class="col-lg-12">
+      <app-search (emitter)="assignCars($event)"></app-search>
+    </div>
+  </div>
+    <div class="row" *ngIf="cars.length != 0; else noCars">
         <div class="col-lg-3" *ngFor="let c of cars">
             <div class="card">
-                <img [src]="c.avatar" class="card-img-top" alt="Car image">
+                <img [src]="c.imageUrl" class="card-img-top" alt="Car image">
                 <div class="card-body">
-                  <h5 class="card-title">{{ c.first_name }}  {{ c.last_name }}</h5>
-                  <p class="card-text">{{ c.email }}</p>
+                  <h5 class="card-title">{{ c.manufacturer }}</h5>
+                  <p class="card-text">{{ c.pricePerDay }}</p>
                   <a routerLink="/cars/{{c.id}}" class="btn btn-primary">Details</a>
                   <a routerLink="/cars/{{c.id}}/edit" class="btn btn-warning">Edit</a>
                   <button (click)="openModal(c.id)" class="btn btn-danger">Delete</button>
@@ -13,6 +18,10 @@
               </div>
         </div>
     </div>
+    <ng-template class="row" #noCars>
+      <h1>No cars found</h1>
+    </ng-template>
+  
 </div>
 
 <app-pop-up class="my-prompt" [isOpen]="popUpOpen">
