@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Climate Control</label>
-                  <select class="form-control" formControlName="climateControl">
+                  <select class="form-control" formControlName="hasClimateControl">
                     <option  [ngValue]="true">Yes</option>
                     <option  [ngValue]="false">No</option>
                   </select>              
@@ -42,7 +42,7 @@
                     <option  [ngValue]="2">Automatic</option>
                   </select>              
                 </div>
-                <button class="btn btn-primary" type="submit">Create</button>
+                <button class="btn btn-primary" type="submit" [disabled]="carForm.invalid">Create</button>
               </form>
         </div>
     </div>

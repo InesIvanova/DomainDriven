@@ -1,6 +1,6 @@
-<div class="container-fluid">
-    <div class="row">
-            <div class="col-lg-4">
+<div class="container">
+    <div class="row" *ngIf="user">
+            <div class="col-lg-5">
                 <form [formGroup]="profileForm" (ngSubmit)="editProfile()" >
                     <div class="form-group">
                         <label>Name</label>
@@ -14,9 +14,9 @@
                 </form>
             </div>
 
-            <div class="col-lg-2"></div>
+            <div class="col-lg-1"></div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-5">
                 <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
                     <div class="form-group">
                         <label>Current password</label>

@@ -10,10 +10,15 @@ import { Category } from './category.model';
 })
 export class CarsService {
   carsPath: string = environment.apiUrl + 'carads/';
+  carPathWithoutSlash  = this.carsPath.slice(0, -1)
   constructor(private http: HttpClient) { }
 
   getCars(): Observable<Array<Car>> {
     return this.http.get<Array<Car>>(this.carsPath);
+  }
+
+  getUserCars(): Observable<Array<Car>> {
+    return this.http.get<Array<Car>>(this.carsPath + 'mine');
   }
 
   getCar(id: string): Observable<Car> {
@@ -33,12 +38,20 @@ export class CarsService {
   }
 
   getCategories(): Observable<Array<Category>> {
-    return this.http.get<Array<Category>>(environment.apiUrl + 'categories')
+    return this.http.get<Array<Category>>(this.carsPath + 'categories')
   }
 
   search(queryString): Observable<Array<Car>> {
-    var path  = this.carsPath.slice(0, -1)
-    return this.http.get<Array<Car>>(this.carsPath + "?" + queryString)
+    
+    return this.http.get<Array<Car>>(this.carPathWithoutSlash + queryString)
+  }
+
+  sort(queryString): Observable<Array<Car>> {
+    return this.http.get<Array<Car>>(this.carPathWithoutSlash + queryString)
+  }
+
+  changeAvailability(id): Observable<boolean> {
+    return this.http.put<boolean>(this.carsPath + id + '/ChangeAvailability', {})
   }
 
 }

@@ -5,3 +5,10 @@ label {
 input[number] {
     width: 50%;
 }
+
+form {
+    margin: 0% 1%;
+    border: none;
+    border-right: 1px solid gray;
+    padding-top: 0%;
+}

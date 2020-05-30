@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FormGroup, FormBuilder } from 'ngx-strongly-typed-forms';
 import { LoginService } from './login.service';
@@ -14,7 +14,12 @@ import { RouterExtService } from 'src/app/shared/rouer-ext.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup<LoginFormModel>;
   returnUrl: string;
+  @Output() emitter: EventEmitter<string> = new EventEmitter<string>();
+
   constructor(private fb: FormBuilder, private loginService: LoginService, private route: ActivatedRoute, private router: Router,private routerService: RouterExtService) { 
+    if(localStorage.getItem('token')) {
+      this.router.navigate(['cars'])
+    }
   }
 
   ngOnInit(): void {
@@ -29,6 +34,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.loginForm.value).subscribe(res => {
       this.loginService.setTToken(res['token']);
       this.loginService.setId(res["dealerId"]);
+      window.location.reload()
       this.router.navigate(['cars']);
     })
   }

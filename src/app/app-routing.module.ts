@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'dealers',
     loadChildren: () => import('./dealers/dealers-routing.module').then(m => m.DealersRoutingModule)
   },
+  {
+    path: '',
+    loadChildren: () => import('./shared/shared-routing.module').then(m => m.SharedRoutingModule)
+  },
 ];
 
 @NgModule({

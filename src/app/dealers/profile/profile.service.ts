@@ -21,7 +21,7 @@ export class ProfileService {
   }
 
   changePassword(payload) {
-    return this.http.post('', payload);
+    return this.http.post(environment.apiUrl + 'identity/changePassword', payload);
   }
 
 }

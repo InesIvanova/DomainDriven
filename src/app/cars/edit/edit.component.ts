@@ -29,7 +29,7 @@ export class EditComponent implements OnInit {
       category: [0, Validators.required],
       imageUrl: ['', Validators.required],
       pricePerDay: [0, Validators.required],
-      climateControl: [false, Validators.required],
+      hasClimateControl: [false, Validators.required],
       numberOfSeats: [0, Validators.required],
       transmissionType: [0, Validators.required],
     })
@@ -47,7 +47,7 @@ export class EditComponent implements OnInit {
         category: [car.category, Validators.required],
         imageUrl: [car.imageUrl, Validators.required],
         pricePerDay: [car.pricePerDay, Validators.required],
-        climateControl: [car.climateControl, Validators.required],
+        hasClimateControl: [car.hasClimateControl, Validators.required],
         numberOfSeats: [car.numberOfSeats, Validators.required],
         transmissionType: [car.transmissionType, Validators.required],
       })

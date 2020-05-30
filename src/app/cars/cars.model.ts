@@ -1,3 +1,5 @@
+import { Profile } from '../dealers/profile/profile.model';
+
 export interface Car {
     id?: number;
     manufacturer: string;
@@ -5,7 +7,9 @@ export interface Car {
     category: number;
     imageUrl: string;
     pricePerDay: number;
-    climateControl: boolean;
+    hasClimateControl: boolean;
     numberOfSeats: number;
     transmissionType: number;
+    isAvailable?: boolean;
+    dealer?: Profile;
 }

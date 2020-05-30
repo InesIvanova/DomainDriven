@@ -5,6 +5,7 @@ import { Validators } from '@angular/forms';
 import { CarsService } from '../cars.service';
 import { ToastrService } from 'ngx-toastr';
 import { Category } from '../category.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -14,7 +15,7 @@ import { Category } from '../category.model';
 export class CreateComponent implements OnInit {
   carForm: FormGroup<Car>;
   categories: Array<Category>
-  constructor(private fb: FormBuilder, private carsService: CarsService, public toastr: ToastrService) {
+  constructor(private fb: FormBuilder, private carsService: CarsService, public toastr: ToastrService, private router: Router) {
     this.carsService.getCategories().subscribe(res => {
       this.categories = res;
     })
@@ -22,21 +23,22 @@ export class CreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.carForm = this.fb.group<Car>({
-      manufacturer: ['', Validators.required],
-      model: ['', Validators.required],
-      category: [1, Validators.required],
-      imageUrl: ['', Validators.required],
-      pricePerDay: [0, Validators.required],
-      climateControl: [false, Validators.required],
-      numberOfSeats: [0, Validators.required],
-      transmissionType: [0, Validators.required],
+      manufacturer: [null, Validators.required],
+      model: [null, Validators.required],
+      category: [null, Validators.required],
+      imageUrl: [null, Validators.required],
+      pricePerDay: [null, Validators.required],
+      hasClimateControl: [null, Validators.required],
+      numberOfSeats: [null, Validators.required],
+      transmissionType: [null, Validators.required],
     })
   }
 
 
   create() {
     this.carsService.createCar(this.carForm.value).subscribe(res => {
-      this.toastr.success("Success")
+      this.toastr.success("Success");
+      this.router.navigate(['cars', 'mine'])
     })
   }
 

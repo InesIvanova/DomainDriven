@@ -6,6 +6,7 @@ import { CarsService } from '../cars.service';
 import { Category } from '../category.model';
 import { EventEmitter } from '@angular/core';
 import { Car } from '../cars.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -15,18 +16,26 @@ import { Car } from '../cars.model';
 export class SearchComponent implements OnInit {
   searchForm: FormGroup<Search>
   categories: Array<Category>;
+  category = null;
   @Output('emitter') emitter = new EventEmitter<Array<Car>>();
-  constructor(private fb: FormBuilder, private carService: CarsService) { }
+  constructor(private fb: FormBuilder, private carService: CarsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.carService.getCategories().subscribe(res => {
-      this.categories = res
-    })
     this.searchForm = this.fb.group<Search>({
       manufacturer: ['', Validators.required],
-      category: [null, Validators.required],
+      dealer: [''],
+      category: [this.category, Validators.required],
       minPricePerDay: [null, Validators.required],
       maxPricePerDay: [null, Validators.required],
+    })
+    this.route.queryParams.subscribe(params => {
+      this.category = params['category'];
+      this.searchForm.patchValue({category: this.category})
+      console.log(this.searchForm)
+      this.search()
+  });
+    this.carService.getCategories().subscribe(res => {
+      this.categories = res
     })
   }
 
@@ -48,7 +57,14 @@ export class SearchComponent implements OnInit {
       params.append(key, formValue[key]);
     }
 
-    return params;
+    var query = params.toString()
+    if (this.router.url.includes('mine')) {
+      query = '/mine?' + params
+    }
+    else {
+      query = '?' + params
+    }
+    return query;
   }
 
 }

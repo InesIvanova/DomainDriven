@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarsService } from '../cars.service';
 import { Car } from '../cars.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -9,13 +10,13 @@ import { Car } from '../cars.model';
 })
 export class ListComponent implements OnInit {
   cars: Array<Car>;
-  popUpOpen: boolean = false;
   id: string;
-  constructor(private carsService: CarsService) { }
+  category = null;
+  constructor(private carsService: CarsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.popUpOpen = false
     this.fetchCars()
+
   }
 
   fetchCars() {
@@ -24,25 +25,8 @@ export class ListComponent implements OnInit {
     })
   }
 
-  openModal(id) {
-    this.popUpOpen = true;
-    this.id = id;
-  }
-
-  cancelModal() {
-    this.popUpOpen = false;
-    this.id = null;
-  }
-
   assignCars(event) {
     this.cars = event['carAds'];
-  }
-
-  deleteCar() {
-    this.carsService.deleteCar(this.id).subscribe(res => {
-      this.popUpOpen = false;
-      this.fetchCars();
-    })
   }
 
 }

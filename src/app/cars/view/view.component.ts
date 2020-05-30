@@ -17,7 +17,7 @@ export class ViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.carService.getCar(this.id).subscribe(car => {
-      this.car = car['data'];
+      this.car = car;
     })
   }
 
