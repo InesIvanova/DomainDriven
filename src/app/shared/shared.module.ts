@@ -11,10 +11,12 @@ import { RouterExtService } from './rouer-ext.service';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptorService } from './error-interceptor.service';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
+import { SharedRoutingModule } from './shared-routing.module';
 
 
 @NgModule({
-  declarations: [PopUpComponent, NavbarComponent],
+  declarations: [PopUpComponent, NavbarComponent, HomeComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -24,6 +26,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     NgxStronglyTypedFormsModule,
     ModalModule,
     ToastrModule.forRoot(),
+    SharedRoutingModule,
   ],
   providers: [
     {

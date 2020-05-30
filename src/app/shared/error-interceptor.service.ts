@@ -9,7 +9,6 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root'
 })
 export class ErrorInterceptorService  implements HttpInterceptor {
-    
   constructor(public router: Router, private toastr: ToastrService) {
   }
  
@@ -17,8 +16,27 @@ export class ErrorInterceptorService  implements HttpInterceptor {
  
     return next.handle(req).pipe(
       catchError((error) => {
-        this.toastr.error("Error", error.message)
-        return throwError(error.message);
+        if (error.error.validationDetails) {
+          for(var key in error.error.errors){
+            console.log(error.error.errors[key])
+            error.error.errors[key].forEach(element => {
+              this.toastr.error("Error", element, {
+                timeOut: 0,
+                extendedTimeOut: 0
+              })
+            });
+  
+          }
+        }
+        else {
+        error.error.forEach(element => {
+          this.toastr.error("Error", element, {
+            timeOut: 0,
+            extendedTimeOut: 0
+          })
+        });
+      }
+        return throwError(error.error);
       })
     )
   }

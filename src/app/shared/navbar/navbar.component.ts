@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CarsService } from 'src/app/cars/cars.service';
+import { Category } from 'src/app/cars/category.model';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  token
+  token: string;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
