@@ -25,6 +25,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate([param])
   }
 
+  chanheNav(event) {
+    console.log(event)
+  }
+
   logout() {
     localStorage.removeItem('token')
     this.getToken()
