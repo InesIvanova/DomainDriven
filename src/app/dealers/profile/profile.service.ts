@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Profile } from './profile.model';
-import { EMPTY } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +20,7 @@ export class ProfileService {
   }
 
   changePassword(payload) {
-    return this.http.post(environment.apiUrl + 'identity/changePassword', payload);
+    return this.http.put(environment.apiUrl + 'identity/changePassword', payload);
   }
 
 }

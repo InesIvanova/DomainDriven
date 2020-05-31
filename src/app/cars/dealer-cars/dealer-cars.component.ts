@@ -47,7 +47,7 @@ export class DealerCarsComponent implements OnInit {
 
   changeAvailability(id) {
     this.carsService.changeAvailability(id).subscribe(res => {
-      
+      this.fetchCars()
     }) 
   }
 

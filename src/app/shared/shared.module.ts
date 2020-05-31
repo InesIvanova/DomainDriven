@@ -13,10 +13,11 @@ import { ErrorInterceptorService } from './error-interceptor.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { SharedRoutingModule } from './shared-routing.module';
+import { PaginationComponent } from './pagination/pagination.component';
 
 
 @NgModule({
-  declarations: [PopUpComponent, NavbarComponent, HomeComponent],
+  declarations: [PopUpComponent, NavbarComponent, HomeComponent, PaginationComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -42,6 +43,6 @@ import { SharedRoutingModule } from './shared-routing.module';
     RouterExtService,
   ],
   exports: [ReactiveFormsModule,    FormsModule,
-    ModalModule, PopUpComponent, NavbarComponent]
+    ModalModule, PopUpComponent, NavbarComponent, PaginationComponent]
 })
 export class SharedModule { }

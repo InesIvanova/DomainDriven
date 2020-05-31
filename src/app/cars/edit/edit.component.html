@@ -7,7 +7,7 @@
                   <input type="text" class="form-control" formControlName="manufacturer">
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlInput1">Model</label>
+                  <label >Model</label>
                   <input type="text" class="form-control" formControlName="model">
                 </div>
                 <div class="form-group">
@@ -15,6 +15,9 @@
                   <select class="form-control" formControlName="category">
                     <option *ngFor="let c of categories" [value]="c.id">{{c.name}}</option>
                   </select>
+                </div>
+                <div class="form-group">
+                  <img [src]="imageUrl" alt="">
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Car's image url</label>
@@ -42,7 +45,7 @@
                     <option  [ngValue]="2">Automatic</option>
                   </select>              
                 </div>
-                <button class="btn btn-primary" type="submit">Create</button>
+                <button class="btn btn-primary" type="submit">Edit</button>
               </form>
         </div>
     </div>

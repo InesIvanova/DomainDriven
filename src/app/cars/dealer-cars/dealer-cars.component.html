@@ -6,7 +6,7 @@
         <div class="col-lg-2" *ngFor="let c of cars">
             <div class="card">
                 <button class="btn btn-success" (click)="changeAvailability(c.id)" *ngIf="!c.isAvailable">Show</button>
-                <button class="btn btn-success" (click)="changeAvailability(c.id)" *ngIf="c.isAvailable">Hide</button>
+                <button class="btn btn-info" (click)="changeAvailability(c.id)" *ngIf="c.isAvailable">Hide</button>
                 <img [src]="c.imageUrl" class="card-img-top" alt="Car image">
                 <div class="card-body">
                   <h5 class="card-title">{{ c.manufacturer }}</h5>

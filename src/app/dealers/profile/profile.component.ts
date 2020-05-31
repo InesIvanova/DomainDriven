@@ -48,6 +48,8 @@ export class ProfileComponent implements OnInit {
 
   changePassword() {
     this.profileService.changePassword(this.changePasswordForm.value).subscribe(res => {
+      localStorage.clear()
+      window.location.reload()
       this.router.navigate(['auth']);
     })
   }
